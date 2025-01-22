@@ -21,8 +21,8 @@ T stands for available, F stand for not available
 Explaination: value_counts(normalize = True) gives proportions. Multiplying 100 converts the proportions into percentage
 
 ```
-availavility_percentage = data['available'].value_counts(normalize=True) * 100
-availavility_percentage
+availability_percentage = data['available'].value_counts(normalize=True) * 100
+availability_percentage
 ```
 <img width="266" alt="image" src="https://github.com/user-attachments/assets/66050a9e-306d-4125-b8f5-cb8332c898b4" />
 
@@ -38,4 +38,11 @@ print(busiest_dates.head())
 # Plot a bar graph tp show availability percentage
 
 ```
+import matplotlib.pyplot as plt
+availability_percentage.plot(kind='bar', color=['green','red'])
+plt.title('Availability Percentages')
+plt.ylabel('Percentage')
+plt.xlabel('Avilable (t/f)')
+plt.show()
 ```
+<img width="562" alt="image" src="https://github.com/user-attachments/assets/f055578b-a709-4ad2-bcc0-bef9bacc7f58" />
