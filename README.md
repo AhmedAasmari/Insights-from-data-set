@@ -35,7 +35,7 @@ print(busiest_dates.head())
 ```
 <img width="266" alt="image" src="https://github.com/user-attachments/assets/4271d577-51d4-4d28-b5aa-6ba79dc54116" />
 
-# 4 Plot a bar graph tp show availability percentage
+# 4 Plot a bar graph to show availability percentage
 
 ```
 import matplotlib.pyplot as plt
@@ -72,3 +72,51 @@ listings.columns
 ```
 <img width="564" alt="image" src="https://github.com/user-attachments/assets/3ba156f7-5fef-43ce-a63c-84ee126c7103" />
 
+# ✅ Room type and price is given seperately
+
+Let's compbine them
+```
+import matplotlib.pyplot as plt
+price_by_room = listings.groupby('room_type')['price'].mean()
+print(price_by_room)
+
+# Plot price by room type
+price_by_room.plot(kind='bar', color='cyan')
+plt.title('Average Price by Room Type')
+plt.ylabel('Average Price')
+plt.xlabel('Room Type')
+
+plt.show()
+```
+<img width="554" alt="image" src="https://github.com/user-attachments/assets/a419bccb-bf78-4d42-b72b-b785f0acfa77" />
+
+# ✅ Which are the top 10 neighborhoods with the most listings?
+
+```
+neighborhood_counts = listings['neighbourhood'].value_counts().head(10)
+print("Top 10 Neighborhoods by Listings:")
+print(neighborhood_counts)
+
+# Plot neighborhoods with most listings
+neighborhood_counts.plot(kind='bar', color='lightcoral')
+plt.title('Top 10 Neighborhoods by Listings')
+plt.ylabel('Number of Listings')
+plt.xlabel('Neighborhood')
+plt.xticks(rotation=90)
+plt.show()
+```
+<img width="554" alt="image" src="https://github.com/user-attachments/assets/816917e4-e3f0-4adc-801e-e879c987e2b1" />
+
+#✅ Geographical Distribution of Listings (Price Colored)
+```
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+plt.figure(figsize=(10, 6))
+sns.scatterplot(data=listings, x='longitude', y='latitude', hue='price', palette='viridis', size='price', sizes=(10, 200))
+plt.title('Geographical Distribution of Listings (Price Colored)')
+plt.xlabel('Longitude')
+plt.ylabel('Latitude')
+plt.show()
+```
+<img width="555" alt="image" src="https://github.com/user-attachments/assets/dd4d1823-7063-4202-baa2-3f22c42ca476" />
