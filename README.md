@@ -107,7 +107,7 @@ plt.show()
 ```
 <img width="554" alt="image" src="https://github.com/user-attachments/assets/816917e4-e3f0-4adc-801e-e879c987e2b1" />
 
-#✅ Geographical Distribution of Listings (Price Colored)
+# ✅ Geographical Distribution of Listings (Price Colored)
 ```
 import matplotlib.pyplot as plt
 import seaborn as sns
@@ -120,3 +120,53 @@ plt.ylabel('Latitude')
 plt.show()
 ```
 <img width="555" alt="image" src="https://github.com/user-attachments/assets/dd4d1823-7063-4202-baa2-3f22c42ca476" />
+
+# Let us see the listings on a real map
+- Hotter Areas (Red/Yellow): High Density: The areas that appear in red or yellow (the   "hot" colors) indicate higher density or concentration of listings. This means there   are more listings in these areas. Popular Locations: These regions might be more     
+  popular or in high demand. It could be near tourist attractions, popular 
+  neighborhoods, or central areas in Hawaii where people tend to stay more often. 
+  Colder Areas (Green/Blue):
+
+- Low Density: Areas with blue or green (the "cold" colors) indicate a lower   
+  concentration of listings. These regions have fewer listings available. Less Popular 
+  Locations: These areas might be less popular or further from key attractions. If 
+  you're looking at pricing or other factors, lower density could imply less 
+  competition in these regions, which might indicate more affordable areas or less 
+  tourist traffic. Density Patterns:
+
+- Clustered Areas: If you notice clusters of heatmap intensity, they represent 
+  hotspots. These might correspond to high-traffic areas like resorts, beaches, or 
+  urban centers. Spread-Out Listings: If the heatmap shows a more uniform  
+  distribution, it could suggest that listings are more evenly spread across the 
+  region, which may reflect a more balanced demand for rentals across different areas 
+  of Albany.
+
+```
+import folium
+from folium.plugins import HeatMap
+import pandas as pd
+
+
+albany_data = listings[['latitude', 'longitude', 'price']]  # Example, you may add more columns
+
+# Create a base map centered around Albany
+m = folium.Map(location=[42.65265406144247, -73.75935740854021], zoom_start=10)
+
+# Prepare the data for the heatmap
+heat_data = [[row['latitude'], row['longitude']] for index, row in albany_data.iterrows()]
+
+# Add the heatmap to the map
+HeatMap(heat_data).add_to(m)
+
+# Save the map as an HTML file to view in a browser
+m.save('Albany_heatmap.html')
+
+# If you're using Jupyter Notebook, you can display the map directly in the notebook:
+m
+```
+<img width="533" alt="image" src="https://github.com/user-attachments/assets/f4a2bc8d-790d-4eea-860d-73f1f47eb6a1" />
+
+# 🚨 How do I find location for my city?
+- Type your city name on google maps
+- Click on What`s here
+<img width="1464" alt="image" src="https://github.com/user-attachments/assets/61609d2e-6aa8-4eb3-a5ef-ea931ebfcf69" />
